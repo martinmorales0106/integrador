@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    background-color: aqua;
+    font-family: cursive;
+    border-radius: 10px 0 0 10px;
+    border-color: aqua;
+    outline: none;
+}
+
+button {
+    border-radius: 0 10px 0 10px;
+    background-color: black;
+    color: aqua;
+    border-color: aqua;
+}
+
+button:hover{
+    color: black;
+    background-color: aqua;
+    cursor: pointer;
+}
