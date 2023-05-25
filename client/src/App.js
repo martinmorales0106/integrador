@@ -29,13 +29,13 @@ function App() {
   //   };
 
   const onSearch = (id) => {
-    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+    fetch(`http://localhost:3001/rickandmorty/character/${id}`)
       .then((res) => res.json())
       .then((data) => {
         (
           data.name
             ? characters.filter((char) => char.id === data.id).length === 0
-            : ""
+            : alert(data.error)
         )
           ? setCharacters([...characters, data])
           : alert("Ya existe un personaje con ese Id");
