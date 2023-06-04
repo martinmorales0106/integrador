@@ -19,15 +19,16 @@ function Form(props) {
     setErrors(validate({ ...userData, [name]: value }));
   };
 
-  const handleSubmit = (event)=>{
-    event.preventDefault()
-    props.login(userData)
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.login(userData);
+  };
+
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
       <img src={imagen} alt="" />
       <br />
-      <label htmlFor="">Nombre: </label>
+      <label htmlFor="userName">Nombre:</label>
       <input
         className={errors.userName && styles.warning}
         type="text"
@@ -35,17 +36,16 @@ function Form(props) {
         name="userName"
         onChange={handleChange}
       />
-      {errors.userName ? <p style={{color:"red"}}>{errors.userName}</p> : null}
-      <label htmlFor="">Password: </label>
+      {errors.userName && <p className={styles.error}>{errors.userName}</p>}
+      <label htmlFor="password">Password:</label>
       <input
         className={errors.password && styles.warning}
         type="password"
         value={userData.password}
         name="password"
         onChange={handleChange}
-        
       />
-      {errors.password ? <p style={{color:"red"}}>{errors.password}</p> : null}
+      {errors.password && <p className={styles.error}>{errors.password}</p>}
       <br />
       <button type="submit">Login</button>
     </form>

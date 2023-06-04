@@ -1,23 +1,28 @@
-import React, {useState} from 'react';
-import styles from "./SearchBar.module.css"
+import React, { useState } from 'react';
+import styles from "./SearchBar.module.css";
 
 function SearchBar(props) {
-   const [characters, setCharacters] = useState("");
+   const [searchValue, setSearchValue] = useState("");
 
    function handleInputChange(event) {
-      setCharacters(event.target.value);
+      setSearchValue(event.target.value);
    }
 
    function handleAddButtonClick() {
-      props.onSearch(characters);
+      props.onSearch(searchValue);
    }
 
    return (
       <div className={styles.container}>
-         <input type='text' value={characters} onChange={handleInputChange} />
-         <button onClick={handleAddButtonClick}>Agregar</button>
+         <input
+            type="text"
+            value={searchValue}
+            onChange={handleInputChange}
+            placeholder="Buscar personaje"
+         />
+         <button onClick={handleAddButtonClick}>Buscar</button>
       </div>
    );
 }
 
-export default SearchBar
+export default SearchBar;

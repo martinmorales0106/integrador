@@ -18,7 +18,7 @@ export const validate = (inputs) => {
   }
 
   if (inputs.password.length < 6 || inputs.password.length > 10) {
-    errors.password = "Dbe tener entre 6 y 10 caracteres";
+    errors.password = "Debe tener entre 6 y 10 caracteres";
   }
   return errors;
 };

@@ -1,4 +1,4 @@
-.container{
+.container {
     display: flex;
     flex-direction: column;
     width: 230px;
@@ -7,61 +7,73 @@
     border-radius: 20px;
     background-color: aliceblue;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
-    
-}
-
-.container:hover{
-    transform: scale(1.1)
-} 
-
-.buttonContainer{
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .container:hover {
+    transform: scale(1.1);
+  }
+  
+  .buttonContainer {
     display: flex;
     justify-content: space-between;
-}
-
-.button{
+  }
+  
+  .button {
     border-radius: 20px;
     margin: 10px 10px 0 0;
     border: none;
     background-color: red;
     color: aliceblue;
-}
-
-.button:hover{
+    cursor: pointer;
+  }
+  
+  .button:hover {
     background-color: aliceblue;
     color: red;
-}
-
-img{
+  }
+  
+  img {
     width: 200px;
+    height: 200px;
     border-radius: 10px 10px 0 0;
-}
-.imageContainer{
+    object-fit: cover;
+  }
+  
+  .imageContainer {
     display: flex;
     flex-direction: column-reverse;
     margin-top: 10px;
     align-items: center;
-}
-
-.name{
+    position: relative;
+  }
+  
+  .name {
     background-color: aqua;
     position: absolute;
-    margin-bottom: 0px;
-}
-
-.propsContainer{
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0px;
+  }
+  
+  .propsContainer {
     display: flex;
     justify-content: space-evenly;
-    margin: 0px;
+    margin: 0;
     background: black;
     color: aliceblue;
-}
-
-.propsContainer h2{
-    margin: 0px;
-}
-
-.link {
+    border-radius: 0 0 15px 15px;
+    border-bottom: 2px solid aliceblue;
+  }
+  
+  
+  .propsContainer h2 {
+    margin: 0;
+  }
+  
+  .link {
     text-decoration: none;
     color: inherit;
-}
+  }
+  

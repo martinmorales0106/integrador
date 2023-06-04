@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
@@ -7,51 +7,54 @@ import About from "./components/About/About";
 import Detail from "./components/Detail/Detail";
 import Form from "./components/Forms/Form";
 import Favorites from "./components/Favorites/Favorites";
+import axios from "axios";
 
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
-  const userName = "mar@gmail.com";
-  const password = "123456";
-  //   const example = {
-  //     id: 1,
-  //     name: "Rick Sanchez",
-  //     status: "Alive",
-  //     species: "Human",
-  //     gender: "Male",
-  //     origin: {
-  //       name: "Earth (C-137)",
-  //       url: "https://rickandmortyapi.com/api/location/1",
-  //     },
-  //     image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-  //   };
 
-  const onSearch = (id) => {
-    fetch(`http://localhost:3001/rickandmorty/character/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        (
-          data.name
-            ? characters.filter((char) => char.id === data.id).length === 0
-            : alert(data.error)
-        )
-          ? setCharacters([...characters, data])
-          : alert("Ya existe un personaje con ese Id");
-      })
-      .catch((error) => console.log(error));
+  const onSearch = async (id) => {
+    try {
+      if (!id) {
+        return alert("ID de personaje no proporcionado");
+      }
+
+      const { data } = await axios.get(
+        `http://localhost:3001/rickandmorty/character/${id}`
+      );
+      const char = characters.find((char) => char.id === data.id);
+      if (char) {
+        return alert("Personaje ya existe");
+      }
+      setCharacters([...characters, data]);
+    } catch (error) {
+      alert(error.message);
+    }
   };
+
+  useEffect(() => {
+    console.log(access);
+  }, [access]);
 
   const onClose = (id) => {
     const filtered = characters.filter((char) => char.id !== Number(id));
     setCharacters(filtered);
   };
 
-  const login = (userData) => {
-    if (userData.userName === userName && userData.password === password) {
-      setAccess(true);
-      navigate("/home");
+  const login = async (userData) => {
+    try {
+      const { userName, password } = userData;
+      const URL = "http://localhost:3001/rickandmorty/login/";
+      const { data } = await axios(
+        URL + `?email=${userName}&password=${password}`
+      );
+      const { access } = data;
+      setAccess(access);
+      access && navigate("/home");
+    } catch (error) {
+      alert(error.message);
     }
   };
 

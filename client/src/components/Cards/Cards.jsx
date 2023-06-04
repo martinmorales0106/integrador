@@ -3,7 +3,7 @@ import Card from '../Card/Card';
 import { Div } from '../assets/styledComponets';
 
 export default function Cards(props) {
-  const { characters } = props;
+  const { characters, onClose } = props;
 
   return (
     <Div>
@@ -15,7 +15,7 @@ export default function Cards(props) {
           species={character.species}
           gender={character.gender}
           image={character.image}
-          onClose={() => props.onClose(character.id)}
+          onClose={() => onClose(character.id)}
         />
       ))}
     </Div>

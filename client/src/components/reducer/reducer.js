@@ -7,19 +7,11 @@ const initialState = {
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_FAVORITE:
-      return {
-        ...state,
-        myFavorites: [...state.myFavorites, payload],
-      };
+      return { ...state, myFavorites: payload };
 
     case DELETE_FAVORITE:
-      const filtered = state.myFavorites.filter(
-        (character) => character.id !== payload
-      );
-      return {
-        ...state,
-        myFavorites: filtered,
-      };
+      return { ...state, myFavorites: payload };
+      
     default:
       return state;
   }
